@@ -1,10 +1,10 @@
-# Mzansi Lifestyle Lounge 🇿🇦
+# Mzansi Restaurant 🇿🇦
 
-A premium South African lifestyle area application built with **React Native** and **Expo Go**. This app serves as a digital hub for a lifestyle venue featuring a Braai Hub, Restaurant, Carwash, and Bar.
+A premium South African restaurant application built with **React Native** and **Expo Go**. This app serves as a digital hub for a premium dining experience featuring a Braai Hub, Restaurant, and Bar.
 
 ## ✨ Features
 
-- **Lounge (Home)**: High-end lifestyle landing page with featured items and venue gallery.
+- **Restaurant (Home)**: High-end dining landing page with featured items and venue gallery.
 - **Braai & Restaurant Menu**: Full digital menu with diverse categories (Braai, Specialities, Drinks).
 - **Cart System**: Seamlessly add items to your basket and manage orders.
 - **Premium Carwash**: Book and track carwash services while you enjoy the lounge.

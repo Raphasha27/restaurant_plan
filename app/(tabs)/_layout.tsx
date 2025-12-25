@@ -28,7 +28,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Lounge',
+          title: 'Restaurant',
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
@@ -51,6 +51,13 @@ export default function TabLayout() {
         options={{
           title: 'Orders',
           tabBarIcon: ({ color }) => <TabBarIcon name="shopping-basket" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="reservations"
+        options={{
+          title: 'Bookings',
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
         }}
       />
     </Tabs>

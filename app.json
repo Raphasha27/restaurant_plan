@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Mzansi Lifestyle Lounge",
-    "slug": "mzansi-lifestyle-lounge",
+    "name": "Mzansi Restaurant",
+    "slug": "mzansi-restaurant",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

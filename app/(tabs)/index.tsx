@@ -19,8 +19,8 @@ export default function HomeScreen() {
           style={styles.heroImage}
         >
           <View style={styles.heroOverlay}>
-            <Text style={styles.heroTitle}>Mzansi Lifestyle Lounge</Text>
-            <Text style={styles.heroSubtitle}>Where vibes, flavor, and class meet.</Text>
+            <Text style={styles.heroTitle}>Mzansi Restaurant</Text>
+            <Text style={styles.heroSubtitle}>Authentic South African flavors & premium vibes.</Text>
             <TouchableOpacity style={[styles.ctaButton, { backgroundColor: tint }]}>
               <Text style={styles.ctaText}>Book a Table</Text>
             </TouchableOpacity>
@@ -105,9 +105,9 @@ export default function HomeScreen() {
       <View style={styles.vibeCard}>
         <View style={styles.vibeInfo}>
           <View style={styles.liveIndicator} />
-          <Text style={styles.vibeText}>The lounge is currently VIBRANT (Busy)</Text>
+          <Text style={styles.vibeText}>The restaurant is currently VIBRANT (Busy)</Text>
         </View>
-        <Text style={styles.vibeSubtext}>Estimated carwash wait: 35 mins</Text>
+        <Text style={styles.vibeSubtext}>Estimated wait time: 15 mins</Text>
       </View>
 
       <View style={{ height: 40 }} />
