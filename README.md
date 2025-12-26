@@ -1,56 +1,69 @@
-# Mzansi Restaurant 🇿🇦
+# Mzansi Lifestyle Lounge 🇿🇦
 
-A premium South African restaurant application built with **React Native** and **Expo Go**. This app serves as a digital hub for a premium dining experience featuring a Braai Hub, Restaurant, and Bar.
+> **"Where Vibes, Flavor, and Class Meet."**
 
-## ✨ Features
+A premium **Super App** built for the ultimate South African lifestyle experience. This application consolidates fine dining, event management, and luxury services into a single, cohesive digital platform. Built with **React Native** and **Expo Go**.
 
-- **Restaurant (Home)**: High-end dining landing page with featured items and venue gallery.
-- **Braai & Restaurant Menu**: Full digital menu with diverse categories (Braai, Specialities, Drinks).
-- **Cart System**: Seamlessly add items to your basket and manage orders.
-- **Premium Carwash**: Book and track carwash services while you enjoy the lounge.
-- **Order History**: Track your current and past meals and services.
-- **Secure Checkout**: Integration-ready basket for mock payments.
+---
 
-## 🎨 Design Philosophy
+## 📱 Core Features
 
-The app uses a "Premium Mzansi" aesthetic:
-- **Color Palette**: Rich Blacks, Deep Golds (`#D48806`), and vibrant accents.
-- **Typography**: Clean, modern fonts with a focus on readability and luxury.
-- **Experience**: Micro-animations and smooth transitions using Expo Router.
+### 🍖 Braai & Dining Hub
+- **Digital Menu**: Browse high-end Braai platters, Wagyu burgers, and premium sides.
+- **Smart Basket**: Real-time cart management with VAT calculation and service fees.
+- **Live Order Tracking**: Watch your order status progress from `Placed` ➡️ `Preparing` ➡️ `Ready` with live visual badges.
+
+### 🥂 Events & Vibe Access
+- **Event Dashboard**: Discover upcoming DJ sets, Sunday Soul Sessions, and Braai Days.
+- **RSVP System**: One-tap RSVP for exclusive parties.
+- **Digital Vibe Pass**: Generates a unique **QR Code Ticket** for VIP event entry.
+
+### 👨‍🍳 Staff Operations (KDS)
+- **Kitchen Display System**: A dedicated tablet-view for kitchen staff.
+- **Kanban Workflow**: Drag-and-drop style interface to move orders through prep stations.
+- **Role-Based Access**: Secure "Staff Mode" login for employees.
+
+### 🚘 Lifestyle Services
+- **Premium Carwash**: Book a wash while you dine.
+- **Gallery**: View the latest vibes and atmosphere.
+
+---
+
+## 🔐 Authentication & Roles
+The app features a robust simulated authentication system:
+- **User Mode**: Sign up/Login to order, book, and RSVP.
+- **Staff Mode**: Special access for kitchen and management operations.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Expo SDK 50+](https://expo.dev/)
+- **Language**: TypeScript
+- **Navigation**: Expo Router (File-based routing)
+- **State Management**: React Context API (`AuthContext`, `CartContext`, `OrderContext`, `EventContext`)
+- **UI/UX**: Custom "Gold & Black" design system, Micro-animations, Glassmorphism.
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (LTS)
-- [Expo Go](https://expo.dev/go) app on your mobile device.
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <YOUR_REPO_URL>
-   cd restauant_app
-   ```
-
-2. Install dependencies:
+1. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-3. Start the development server:
+2. **Start the App**:
    ```bash
-   npm start
+   npx expo start
    ```
 
-4. Scan the QR code displayed in your terminal using the **Expo Go** app (Android) or **Camera** app (iOS).
-
-## 🛠️ Tech Stack
-
-- **Framework**: [Expo](https://expo.dev/)
-- **Core**: React Native (TypeScript)
-- **Navigation**: [Expo Router](https://docs.expo.dev/router/introduction/)
-- **Icons**: FontAwesome via `@expo/vector-icons`
+3. **Explore**:
+   - **User Flow**: Login ➡️ Order Food ➡️ Track Order ➡️ RSVP to Event.
+   - **Staff Flow**: Login -> Click 'Staff Access' ➡️ Open Profile Menu ➡️ Click Cutlery Icon ➡️ Manage Kitchen.
 
 ---
-Built with ❤️ for South African Lifestyle.
+
+## 📸 Snapshots
+
+*Built with ❤️ for the Culture.*
