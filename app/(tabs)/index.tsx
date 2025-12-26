@@ -117,7 +117,7 @@ export default function HomeScreen() {
           <Text style={styles.actionLabel}>Drinks</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.actionCard}>
+        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/events')}>
           <View style={[styles.iconCircle, { backgroundColor: '#E91E6322' }]}>
             <FontAwesome name="music" size={24} color="#E91E63" />
           </View>
