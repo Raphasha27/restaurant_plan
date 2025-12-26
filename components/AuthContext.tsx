@@ -1,16 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 type User = {
   id: string;
   name: string;
   email: string;
   phone?: string;
+  role: 'user' | 'staff';
 };
 
 type AuthContextType = {
   user: User | null;
   isLoading: boolean;
-  signIn: (email: string, name: string) => Promise<void>;
+  signIn: (email: string, name: string, role?: 'user' | 'staff') => Promise<void>;
   signOut: () => void;
 };
 
@@ -21,15 +22,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
 
   // Mock sign in
-  const signIn = async (email: string, name: string) => {
+  const signIn = async (email: string, name: string, role: 'user' | 'staff' = 'user') => {
     setIsLoading(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setUser({
-      id: '1',
+      id: role === 'staff' ? 'staff-1' : '1',
       name: name,
       email: email,
-      phone: '071 234 5678'
+      phone: '071 234 5678',
+      role: role
     });
     setIsLoading(false);
   };

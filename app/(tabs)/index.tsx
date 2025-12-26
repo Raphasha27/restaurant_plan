@@ -1,17 +1,80 @@
+import { useAuth } from '@/components/AuthContext';
+import { useNotification } from '@/components/NotificationContext';
 import { Text, View } from '@/components/Themed';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
-import { Image, ImageBackground, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, ImageBackground, ScrollView, Share, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
   const tint = Colors[colorScheme ?? 'light'].tint;
   const router = useRouter();
+  const { user, signOut } = useAuth();
+  const { showNotification } = useNotification();
+
+  const handleShare = async () => {
+    try {
+      const result = await Share.share({
+        message: 'Join me at Mzansi Lifestyle Lounge! Great vibes, premium braai, and elite carwash services. 🇿🇦🔥',
+        url: 'https://mzansi-lounge.co.za',
+      });
+      if (result.action === Share.sharedAction) {
+        showNotification('Thanks for sharing the vibe!', 'success');
+      }
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
+
+  const handleBookTable = () => {
+    router.push('/(tabs)/reservations');
+    setTimeout(() => {
+      showNotification('SMS Sent: Your booking request is being processed. 📱');
+    }, 2000);
+  };
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* Header Profile Section */}
+      <View style={styles.topProfileBar}>
+        {user ? (
+          <View style={styles.userSection}>
+            <View style={styles.userInfo}>
+              <Text style={styles.welcomeText}>Dumela,</Text>
+              <Text style={styles.userNameText}>{user.name}</Text>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <TouchableOpacity onPress={signOut} style={styles.logoutBtn}>
+                <FontAwesome name="sign-out" size={18} color="#ff4444" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleShare} style={[styles.shareBtn, { marginLeft: 10 }]}>
+                <FontAwesome name="share-alt" size={18} color={tint} />
+              </TouchableOpacity>
+              {user.role === 'staff' && (
+                <TouchableOpacity 
+                  onPress={() => router.push('/kitchen')} 
+                  style={[styles.shareBtn, { marginLeft: 10, backgroundColor: '#00BCD422' }]}
+                >
+                  <FontAwesome name="cutlery" size={18} color="#00BCD4" />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+        ) : (
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'transparent' }}>
+            <TouchableOpacity onPress={() => router.push('/login')} style={styles.loginBtn}>
+              <FontAwesome name="user-circle" size={20} color={tint} />
+              <Text style={[styles.loginText, { color: tint }]}>Login to Vibe</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleShare} style={styles.shareBtn}>
+              <FontAwesome name="share-alt" size={18} color={tint} />
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+
       {/* Hero Section */}
       <View style={styles.heroContainer}>
         <ImageBackground 
@@ -19,9 +82,12 @@ export default function HomeScreen() {
           style={styles.heroImage}
         >
           <View style={styles.heroOverlay}>
-            <Text style={styles.heroTitle}>Mzansi Restaurant</Text>
-            <Text style={styles.heroSubtitle}>Authentic South African flavors & premium vibes.</Text>
-            <TouchableOpacity style={[styles.ctaButton, { backgroundColor: tint }]}>
+            <Text style={styles.heroTitle}>Mzansi Lifestyle Lounge</Text>
+            <Text style={styles.heroSubtitle}>Where vibes, flavors, and class meet.</Text>
+            <TouchableOpacity 
+              style={[styles.ctaButton, { backgroundColor: tint }]}
+              onPress={handleBookTable}
+            >
               <Text style={styles.ctaText}>Book a Table</Text>
             </TouchableOpacity>
           </View>
@@ -30,21 +96,21 @@ export default function HomeScreen() {
 
       {/* Quick Actions */}
       <View style={styles.actionsGrid}>
-        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/menu')}>
+        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/(tabs)/menu')}>
           <View style={[styles.iconCircle, { backgroundColor: '#FF8C0022' }]}>
             <FontAwesome name="fire" size={24} color="#FF8C00" />
           </View>
           <Text style={styles.actionLabel}>Braai Hub</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/carwash')}>
+        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/(tabs)/carwash')}>
           <View style={[styles.iconCircle, { backgroundColor: '#2196F322' }]}>
             <FontAwesome name="car" size={24} color="#2196F3" />
           </View>
           <Text style={styles.actionLabel}>Carwash</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/menu')}>
+        <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/(tabs)/menu')}>
           <View style={[styles.iconCircle, { backgroundColor: '#4CAF5022' }]}>
             <FontAwesome name="glass" size={24} color="#4CAF50" />
           </View>
@@ -105,9 +171,9 @@ export default function HomeScreen() {
       <View style={styles.vibeCard}>
         <View style={styles.vibeInfo}>
           <View style={styles.liveIndicator} />
-          <Text style={styles.vibeText}>The restaurant is currently VIBRANT (Busy)</Text>
+          <Text style={styles.vibeText}>The lounge is currently VIBRANT (Busy)</Text>
         </View>
-        <Text style={styles.vibeSubtext}>Estimated wait time: 15 mins</Text>
+        <Text style={styles.vibeSubtext}>Estimated carwash wait: 35 mins</Text>
       </View>
 
       <View style={{ height: 40 }} />
@@ -118,6 +184,53 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  topProfileBar: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: 'transparent',
+  },
+  userSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  userInfo: {
+    backgroundColor: 'transparent',
+  },
+  welcomeText: {
+    fontSize: 12,
+    opacity: 0.6,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  userNameText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  logoutBtn: {
+    padding: 10,
+    backgroundColor: 'rgba(255, 68, 68, 0.1)',
+    borderRadius: 12,
+  },
+  shareBtn: {
+    padding: 10,
+    backgroundColor: 'rgba(212, 136, 6, 0.1)',
+    borderRadius: 12,
+  },
+  loginBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(212, 136, 6, 0.1)',
+    borderRadius: 12,
+    alignSelf: 'flex-start',
+  },
+  loginText: {
+    marginLeft: 10,
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   heroContainer: {
     height: 300,

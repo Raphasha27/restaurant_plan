@@ -1,11 +1,11 @@
-import { StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, ImageBackground } from 'react-native';
-import { Text, View } from '@/components/Themed';
 import { useAuth } from '@/components/AuthContext';
-import { useState } from 'react';
-import { useRouter } from 'expo-router';
-import Colors from '@/constants/Colors';
+import { Text, View } from '@/components/Themed';
 import { useColorScheme } from '@/components/useColorScheme';
+import Colors from '@/constants/Colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { ActivityIndicator, ImageBackground, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -71,6 +71,17 @@ export default function LoginScreen() {
               ) : (
                 <Text style={styles.buttonText}>Sign In / Sign Up</Text>
               )}
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.staffButton} 
+              onPress={async () => {
+                await signIn('staff@mzansi.com', 'Kitchen Staff', 'staff');
+                router.back();
+              }}
+              disabled={isLoading}
+            >
+              <Text style={styles.staffButtonText}>Staff Access</Text>
             </TouchableOpacity>
 
             <View style={styles.socialAuth}>
@@ -160,6 +171,16 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  staffButton: {
+    marginTop: 15,
+    alignItems: 'center',
+    padding: 10,
+  },
+  staffButtonText: {
+    color: '#ccc',
+    fontSize: 14,
+    textDecorationLine: 'underline',
   },
   orText: {
     textAlign: 'center',
