@@ -1,24 +1,64 @@
+import { useAuth } from '@/components/AuthContext';
 import { useCart } from '@/components/CartContext';
+import { useNotification } from '@/components/NotificationContext';
+import { useOrders } from '@/components/OrderContext';
 import { Text, View } from '@/components/Themed';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Image, Platform, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { ActivityIndicator, Image, Platform, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function ModalScreen() {
   const { items, total, removeFromCart, clearCart } = useCart();
+  const { user } = useAuth();
+  const { showNotification } = useNotification();
+  const { addOrder } = useOrders();
   const colorScheme = useColorScheme();
   const tint = Colors[colorScheme ?? 'light'].tint;
   const router = useRouter();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
 
-  const handleCheckout = () => {
-    // In a real app, integrate Stripe/Paystack here
-    alert('Payment Successful! Your order has been placed.');
-    clearCart();
-    router.replace('/(tabs)/orders');
+  const handleCheckout = async () => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    setIsProcessing(true);
+    // Simulate real payment gateway delay (Paystack/Stripe)
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    // Create status order
+    const finalTotal = total + 25 + Math.round(total * 0.15);
+    addOrder(items, finalTotal);
+    
+    setIsPaid(true);
+    setIsProcessing(false);
+    
+    // Simulate SMS notification
+    showNotification(`SMS Sent: Order confirmed! R${finalTotal} charged to your card. 💳`);
+
+    // Auto-navigate after 2 seconds
+    setTimeout(() => {
+      clearCart();
+      router.replace('/(tabs)/orders');
+    }, 2000);
   };
+
+  if (isPaid) {
+    return (
+      <View style={styles.successContainer}>
+        <FontAwesome name="check-circle" size={100} color="#4CAF50" />
+        <Text style={styles.successTitle}>Payment Successful!</Text>
+        <Text style={styles.successSubtitle}>Your Braai feast is being prepared.</Text>
+        <ActivityIndicator color={tint} style={{ marginTop: 20 }} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -33,7 +73,7 @@ export default function ModalScreen() {
           </View>
         ) : (
           <View style={styles.itemList}>
-            <Text style={styles.sectionTitle}>Your Items</Text>
+            <Text style={styles.sectionTitle}>Review Your Selection</Text>
             {items.map((item) => (
               <View key={item.id} style={styles.cartItem}>
                 <Image source={{ uri: item.image }} style={styles.itemImage} />
@@ -57,9 +97,21 @@ export default function ModalScreen() {
                 <Text style={styles.summaryLabel}>Delivery/Service Fee</Text>
                 <Text style={styles.summaryValue}>R25</Text>
               </View>
+              <View style={styles.summaryRow}>
+                <Text style={styles.summaryLabel}>VAT (15%)</Text>
+                <Text style={styles.summaryValue}>R{Math.round(total * 0.15)}</Text>
+              </View>
               <View style={[styles.summaryRow, styles.totalRow]}>
-                <Text style={styles.totalLabel}>Total</Text>
-                <Text style={[styles.totalValue, { color: tint }]}>R{total + 25}</Text>
+                <Text style={styles.totalLabel}>Total to Pay</Text>
+                <Text style={[styles.totalValue, { color: tint }]}>R{total + 25 + Math.round(total * 0.15)}</Text>
+              </View>
+            </View>
+
+            <View style={styles.paymentMethods}>
+              <Text style={styles.paymentTitle}>Payment Method</Text>
+              <View style={styles.methodCard}>
+                <FontAwesome name="credit-card" size={20} color={tint} />
+                <Text style={styles.methodText}>Secure Card Payment (Paystack)</Text>
               </View>
             </View>
           </View>
@@ -68,11 +120,21 @@ export default function ModalScreen() {
 
       {items.length > 0 && (
         <View style={styles.footer}>
+          {!user && (
+            <Text style={styles.loginHint}>You need to be logged in to pay</Text>
+          )}
           <TouchableOpacity 
-            style={[styles.checkoutButton, { backgroundColor: tint }]}
+            style={[styles.checkoutButton, { backgroundColor: tint, opacity: isProcessing ? 0.7 : 1 }]}
             onPress={handleCheckout}
+            disabled={isProcessing}
           >
-            <Text style={styles.checkoutText}>Pay R{total + 25} Now</Text>
+            {isProcessing ? (
+              <ActivityIndicator color="#000" />
+            ) : (
+              <Text style={styles.checkoutText}>
+                {user ? `Secure Payment R${total + 25 + Math.round(total * 0.15)}` : 'Login to Checkout'}
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       )}
@@ -86,6 +148,24 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
+  },
+  successContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30,
+  },
+  successTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 20,
+    color: '#4CAF50',
+  },
+  successSubtitle: {
+    fontSize: 16,
+    opacity: 0.7,
+    textAlign: 'center',
+    marginTop: 10,
   },
   empty: {
     flex: 1,
@@ -176,10 +256,40 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  paymentMethods: {
+    marginTop: 30,
+    backgroundColor: 'transparent',
+  },
+  paymentTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
+  methodCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#33333322',
+    backgroundColor: '#33333308',
+  },
+  methodText: {
+    marginLeft: 15,
+    fontSize: 14,
+    fontWeight: '500',
+  },
   footer: {
     padding: 20,
     borderTopWidth: 1,
     borderTopColor: '#33333311',
+  },
+  loginHint: {
+    textAlign: 'center',
+    color: '#ff4444',
+    fontSize: 12,
+    marginBottom: 10,
+    fontWeight: 'bold',
   },
   checkoutButton: {
     height: 60,

@@ -6,7 +6,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
+import { AuthProvider } from '@/components/AuthContext';
 import { CartProvider } from '@/components/CartContext';
+import { NotificationProvider } from '@/components/NotificationContext';
+import { OrderProvider } from '@/components/OrderContext';
 import { useColorScheme } from '@/components/useColorScheme';
 
 export {
@@ -50,13 +53,20 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <CartProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Basket' }} />
-        </Stack>
-      </ThemeProvider>
-    </CartProvider>
+    <NotificationProvider>
+      <AuthProvider>
+        <OrderProvider>
+          <CartProvider>
+            <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Basket' }} />
+                <Stack.Screen name="login" options={{ presentation: 'modal', title: 'Welcome Back' }} />
+              </Stack>
+            </ThemeProvider>
+          </CartProvider>
+        </OrderProvider>
+      </AuthProvider>
+    </NotificationProvider>
   );
 }
