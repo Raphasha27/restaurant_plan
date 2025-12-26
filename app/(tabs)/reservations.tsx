@@ -1,15 +1,40 @@
+import { useAuth } from '@/components/AuthContext';
+import { useNotification } from '@/components/NotificationContext';
 import { Text, View } from '@/components/Themed';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Alert, ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 export default function ReservationsScreen() {
   const colorScheme = useColorScheme();
   const tint = Colors[colorScheme ?? 'light'].tint;
   const [date, setDate] = useState('2025-12-25');
   const [guests, setGuests] = useState('2');
+  
+  const { user } = useAuth();
+  const { showNotification } = useNotification();
+  const router = useRouter();
+
+  const handleBook = () => {
+    if (!user) {
+      Alert.alert('Login Required', 'Please login to book a table.', [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Login', onPress: () => router.push('/login') }
+      ]);
+      return;
+    }
+
+    showNotification(`Booking Confirmed! See you on ${date} 🥂`, 'success');
+    
+    // Simulate API call
+    setTimeout(() => {
+      // In a real app, save this to a booking context/db
+      router.push('/(tabs)');
+    }, 1500);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -56,7 +81,10 @@ export default function ReservationsScreen() {
           </View>
         </View>
 
-        <TouchableOpacity style={[styles.submitButton, { backgroundColor: tint }]}>
+        <TouchableOpacity 
+          style={[styles.submitButton, { backgroundColor: tint }]}
+          onPress={handleBook}
+        >
           <Text style={styles.submitButtonText}>Confirm Booking</Text>
         </TouchableOpacity>
       </View>
