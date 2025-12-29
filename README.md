@@ -66,4 +66,6 @@ The app features a robust simulated authentication system:
 
 ## 📸 Snapshots
 
+![Home Screen](./assets/images/screenshot_home.png)
+
 *Built with ❤️ for the Culture.*
