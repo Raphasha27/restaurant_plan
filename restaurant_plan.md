@@ -23,6 +23,7 @@ Explore the current implementation:
 Check out other projects in the ecosystem:
 
 - **[Resume Generator](https://github.com/Raphasha27/resume_generator)** (`../Fire4s_Resume_Generator`)
+- **[Gauteng Transport Dashboard](https://github.com/Raphasha27/dashboard)** (`../gauteng_transport_dashboard`)
 - **[Management System (NexusSys)](../management_system)**
 - **[Task Manager Root](../)**
 
