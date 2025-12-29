@@ -1,9 +1,9 @@
 # 🇿🇦 Mzansi Lifestyle Lounge: Restaurant Development Plan
 
 ## 📌 Project Overview
-The **Mzansi Lifestyle Lounge** app is a premium digital platform designed for a South African lifestyle area. It integrates a Braai Hub, Restaurant, Bar, and Carwash into a single, high-end mobile experience.
-
 ![Mzansi Lifestyle Lounge Preview](./assets/images/mzansi_lifestyle_lounge_preview.png)
+
+The **Mzansi Lifestyle Lounge** app is a premium digital platform designed for a South African lifestyle area. It integrates a Braai Hub, Restaurant, Bar, and Carwash into a single, high-end mobile experience.
 
 ---
 
