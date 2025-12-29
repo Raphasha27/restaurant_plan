@@ -3,15 +3,56 @@
 ## 📌 Project Overview
 The **Mzansi Lifestyle Lounge** app is a premium digital platform designed for a South African lifestyle area. It integrates a Braai Hub, Restaurant, Bar, and Carwash into a single, high-end mobile experience.
 
+![Mzansi Lifestyle Lounge Preview](./assets/images/mzansi_lifestyle_lounge_preview.png)
+
+---
+
+## 📸 User Interface
+Explore the current implementation:
+
+| **Home Screen** | **Menu Screen** |
+|:---:|:---:|
+| ![Home Screen](./assets/images/screenshot_home.png) | ![Menu Screen](./assets/images/screenshot_menu.png) |
+
+### 🔗 **[Launch Interface (Localhost)](http://localhost:19007/)**
+
+---
+
+## 🌐 Other Repositories
+Check out other projects in the ecosystem:
+
+- **[Resume Generator](https://github.com/Raphasha27/resume_generator)** (`../Fire4s_Resume_Generator`)
+- **[Management System (NexusSys)](../management_system)**
+- **[Task Manager Root](../)**
+
 ---
 
 ## 🚀 Phase 1: Core Foundation (MVP) - *COMPLETED*
-- [x] **Premium UI/UX Design**: South African themed aesthetic with Gold/Black palette.
-- [x] **Menu Management**: Categorized digital menu (Braai, Specialities, Drinks).
-- [x] **Smart Basket (Cart)**: Add items and calculate totals with service fees.
-- [x] **Carwash Hub**: Service listings with wait-time indicators.
-- [x] **Reservations**: Easy table booking for groups and special occasions.
-- [x] **Responsive Layout**: Smooth navigation using Expo Router.
+- [x] **Premium UI/UX Design**
+    - South African themed aesthetic with Gold/Black palette.
+    - *Preview:*
+    - ![Home Screen](./assets/images/screenshot_home.png)
+
+- [x] **Menu Management**
+    - Categorized digital menu (Braai, Specialities, Drinks).
+    - *Preview:*
+    - ![Menu Screen](./assets/images/screenshot_menu.png)
+
+- [x] **Smart Basket (Cart)**
+    - Add items and calculate totals with service fees.
+
+- [x] **Carwash Hub**
+    - Service listings with wait-time indicators.
+    - *Preview:*
+    - ![Carwash Screen](./assets/images/screenshot_carwash.png)
+
+- [x] **Reservations**
+    - Easy table booking for groups and special occasions.
+    - *Preview:*
+    - ![Reservations Screen](./assets/images/screenshot_reservations.png)
+
+- [x] **Responsive Layout**
+    - Smooth navigation using Expo Router.
 
 ---
 
@@ -50,4 +91,4 @@ The **Mzansi Lifestyle Lounge** app is a premium digital platform designed for a
 - **Official Store Launch (App Store/Play Store)**: Month 3
 
 ---
-*Created by Antigravity for Raphasha27*
+
