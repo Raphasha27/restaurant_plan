@@ -1,8 +1,10 @@
-# Mzansi Lifestyle Lounge 🇿🇦
+# 🥂 KIROV DYNAMICS | MZANSI LIFESTYLE LOUNGE
 
-> **"Where Vibes, Flavor, and Class Meet."**
+[![Kirov Dynamics](https://img.shields.io/badge/Kirov_Dynamics-AI_Implementation-002D62?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27)
+![Role](https://img.shields.io/badge/Role-AI_Implementation_Engineer-blue?style=for-the-badge&labelColor=0d1117)
 
-A premium **Super App** built for the ultimate South African lifestyle experience. This application consolidates fine dining, event management, and luxury services into a single, cohesive digital platform. Built with **React Native** and **Expo Go**.
+**Mzansi Lifestyle Lounge** is a premium **Super App** built for the ultimate South African lifestyle experience. Developed by **Kirov Dynamics Technology**, it demonstrates elite **AI Solutions & Implementation Engineering** by consolidating fine dining, event management, and luxury services into a single, cohesive digital platform.
+
 
 ---
 
