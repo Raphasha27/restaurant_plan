@@ -10,10 +10,12 @@ on:
 jobs:
   mobile: 
     name: Mobile (Expo)
-    runs-on: - uses: actions/checkout@v4
+    runs-on: -
+    uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: - name: Install dependencies
+          node-version: -
+    name: Install dependencies
         run: npm install
       - name: Type Check
         run: npx tsc --noEmit || true
@@ -21,7 +23,8 @@ jobs:
   security_scan: 
     name: Security Scan (Trivy)
     needs: mobile
-    runs-on: - uses: actions/checkout@v4
+    runs-on: -
+    uses: actions/checkout@v4
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
