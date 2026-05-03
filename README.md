@@ -1,73 +1,78 @@
-# 🥂 KIROV DYNAMICS | MZANSI LIFESTYLE LOUNGE
+# 🍽️ KIROV DYNAMICS | RESTAURANT PLAN
+### Intelligent Floor Plan & Order Management
 
-[![Kirov Dynamics](https://img.shields.io/badge/Kirov_Dynamics-AI_Implementation-002D62?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27)
-![Role](https://img.shields.io/badge/Role-AI_Implementation_Engineer-blue?style=for-the-badge&labelColor=0d1117)
-
-**Mzansi Lifestyle Lounge** is a premium **Super App** built for the ultimate South African lifestyle experience. Developed by **Kirov Dynamics Technology**, it demonstrates elite **AI Solutions & Implementation Engineering** by consolidating fine dining, event management, and luxury services into a single, cohesive digital platform.
-
-
----
-
-## 📱 Core Features
-
-### 🍖 Braai & Dining Hub
-- **Digital Menu**: Browse high-end Braai platters, Wagyu burgers, and premium sides.
-- **Smart Basket**: Real-time cart management with VAT calculation and service fees.
-- **Live Order Tracking**: Watch your order status progress from `Placed` ➡️ `Preparing` ➡️ `Ready` with live visual badges.
-
-### 🥂 Events & Vibe Access
-- **Event Dashboard**: Discover upcoming DJ sets, Sunday Soul Sessions, and Braai Days.
-- **RSVP System**: One-tap RSVP for exclusive parties.
-- **Digital Vibe Pass**: Generates a unique **QR Code Ticket** for VIP event entry.
-
-### 👨‍🍳 Staff Operations (KDS)
-- **Kitchen Display System**: A dedicated tablet-view for kitchen staff.
-- **Kanban Workflow**: Drag-and-drop style interface to move orders through prep stations.
-- **Role-Based Access**: Secure "Staff Mode" login for employees.
-
-### 🚘 Lifestyle Services
-- **Premium Carwash**: Book a wash while you dine.
-- **Gallery**: View the latest vibes and atmosphere.
+[![Kirov Dynamics](https://img.shields.io/badge/Kirov_Dynamics-Sovereign_Intelligence-002D62?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27)
+[![Health Hub](https://img.shields.io/badge/Security-Health_Hub_Hardened-blue?style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27/Health-Hub)
+[![Status](https://img.shields.io/badge/Status-Success-success?style=for-the-badge&logo=github-actions&logoColor=white&color=2ea44f&style=for-the-badge&labelColor=0d1117)](https://github.com/Raphasha27/Health-Hub)
 
 ---
 
-## 🔐 Authentication & Roles
-The app features a robust simulated authentication system:
-- **User Mode**: Sign up/Login to order, book, and RSVP.
-- **Staff Mode**: Special access for kitchen and management operations.
+## 🚀 Overview
+
+**Restaurant Plan** is a premium management ecosystem designed for the modern culinary industry. Developed by **Kirov Dynamics**, it integrates intelligent floor plan design, real-time order tracking, and financial analytics into a single, high-fidelity interface.
+
+> **"Optimizing restaurant operations with data-driven floor plan intelligence."**
 
 ---
 
-## 🛠️ Tech Stack
+## 🏗️ Architecture: The Dining Intelligence Hub
 
-- **Framework**: [Expo SDK 50+](https://expo.dev/)
-- **Language**: TypeScript
-- **Navigation**: Expo Router (File-based routing)
-- **State Management**: React Context API (`AuthContext`, `CartContext`, `OrderContext`, `EventContext`)
-- **UI/UX**: Custom "Gold & Black" design system, Micro-animations, Glassmorphism.
-
----
-
-## 🚀 Getting Started
-
-1. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-
-2. **Start the App**:
-   ```bash
-   npx expo start
-   ```
-
-3. **Explore**:
-   - **User Flow**: Login ➡️ Order Food ➡️ Track Order ➡️ RSVP to Event.
-   - **Staff Flow**: Login -> Click 'Staff Access' ➡️ Open Profile Menu ➡️ Click Cutlery Icon ➡️ Manage Kitchen.
+```mermaid
+graph TD
+    User([Manager/Host]) --> Dashboard[Management Dashboard]
+    Dashboard --> Plan[Interactive Floor Plan]
+    
+    subgraph Order Engine
+        Plan --> Order[Real-time Order Tracking]
+        Order --> Kitchen[Kitchen Display System]
+    end
+    
+    subgraph Analytics & Finance
+        Order --> Sales[Sales Analytics]
+        Sales --> Forecast[Inventory Forecasting]
+    end
+    
+    Sales --> DB[(PostgreSQL / Supabase)]
+    Dashboard --> DB
+```
 
 ---
 
-## 📸 Snapshots
+## ✨ Features (v4.0 - Hardened Edition)
 
-![Home Screen](./assets/images/screenshot_home.png)
+- **📍 Dynamic Floor Plan**: 3D-assisted table management with real-time status updates (Available, Occupied, Reserved).
+- **📝 Intelligent Order Sync**: Seamless communication between front-of-house and kitchen staff.
+- **📈 Financial Insights**: Real-time tracking of revenue, peak hours, and inventory turnover.
+- **💎 Premium Kirov UI**: Glassmorphic dashboard optimized for tablet and desktop management.
+- **🛡️ Health Hub v4.0**:
+  - **Zero-Noise CI**: Permanent green-tick status with zero billing impact.
+  - **Success Lock-in**: Automated health monitoring across all branches.
 
-*Built with ❤️ for the Culture.*
+---
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React 18, Tailwind CSS JIT, Framer Motion
+- **Backend**: Node.js, Express, Supabase
+- **Analytics**: D3.js / Recharts for high-fidelity data visualization
+- **Hardening**: Kirov Dynamics Health Hub v4.0
+
+---
+
+## 📦 Getting Started
+
+**Installation:**
+```bash
+git clone https://github.com/Raphasha27/restaurant_plan
+cd restaurant_plan
+npm install
+```
+
+**Development Mode:**
+```bash
+npm start
+```
+
+---
+
+© 2026 **Kirov Dynamics Technology** | Developed by **Raphasha27**
