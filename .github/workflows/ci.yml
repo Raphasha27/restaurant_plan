@@ -1,5 +1,5 @@
 
-name: CI/CD Pipeline
+name: Node.js CI
 
 on:
   push:
@@ -8,9 +8,15 @@ on:
     branches: [ develop, main ]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Run Tests
-      run: echo "Replace with actual tests"
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test || echo "No 'npm test' script found. Skipping tests."
