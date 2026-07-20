@@ -76,3 +76,7 @@ npm start
 ---
 
 © 2026 **Kirov Dynamics Technology** | Developed by **Raphasha27**
+
+## License
+
+MIT
