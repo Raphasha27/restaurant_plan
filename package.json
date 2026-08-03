@@ -11,7 +11,7 @@
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
     "@react-navigation/native": "^7.1.8",
-    "expo": "~54.0.30",
+    "expo": "~54.0.36",
     "expo-constants": "~18.0.12",
     "expo-font": "~14.0.10",
     "expo-linking": "~8.0.11",
@@ -33,5 +33,11 @@
     "react-test-renderer": "19.1.0",
     "typescript": "~5.9.2"
   },
-  "private": true
+  "private": true,
+  "overrides": {
+    "ws": "^7.5.11",
+    "postcss": "^8.5.25",
+    "uuid": "^11.1.1"
+  }
 }
+
